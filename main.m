@@ -12,11 +12,8 @@ for i=1:size(sys_par.lambda,2)
     var=0;
     F=fun2(x,sys_par,i,j,var);
     x0=rand(1,19);
-    while (x(1)<0 || x(1)>1 || x(2)<0 || x(2)>1 || x(3)<0 || x(3)>1 || x(4)<0 || x(4)>1 || x(5)<0 || x(5)>1 || sum(abs(F))>10^(-6))%|| x(6)<0 || x(6)>1 || x(7)<0 || x(7)>1 ||  sum(x>=0)<17
+    while (x(1)<0 || x(1)>1 || x(2)<0 || x(2)>1 || x(3)<0 || x(3)>1 || x(4)<0 || x(4)>1 || x(5)<0 || x(5)>1 || sum(abs(F))>10^(-6))
       [x,fval] = fsolve(@(x)fun2(x,sys_par,i,j,var),x0);%options
-      %var=0;%variance(x,sys_par);
-      %[x,fval] = fsolve(@(x)fun2(x,sys_par,i,var),x0,options);
-      %var=variance(x,sys_par);
       x0=rand(1,19);%x;
       F=fun2(x,sys_par,i,j,var);
     end
@@ -68,14 +65,9 @@ for i=1:size(sys_par.lambda,2)
     r.queue_waiting_CTA(i,j) =r.Tservice_CTA(i,j)*r.ro_CTA(i,j) /2/(1-r.ro_CTA(i,j));
     r.delay_CTA(i,j)= r.queue_waiting_CTA(i,j)+ r.Tservice_CTA(i,j)+(sys_par.T.SD-  r.L_CTA(i,j))^2/2/sys_par.T.SD;
     
-   r.total_throughput(i,j)=r.throughput_CTA(i,j)+ r.throughput_RCAP(i,j);
+    r.total_throughput(i,j)=r.throughput_CTA(i,j)+ r.throughput_RCAP(i,j);
    end
 end
-
-% plot(sys_par.N,r.total_throughput);
-% y2=[2*10^(7) 2.1*10^(7) 2.15*10^(7) 2.18*10^(7) 2.2*10^(7) 2.21*10^(7) 2.215*10^(7) 2.218*10^(7) 2.22*10^(7) 2.221*10^(7) 2.222*10^(7) 2.223*10^(7) 2.224*10^(7) 2.225*10^(7) 2.226*10^(7) 2.227*10^(7) 2.228*10^(7) 2.229*10^(7) 2.230*10^(7) 2.231*10^(7)]
-% y4=[2*2*10^(7) 4*2.1*10^(7) 6*2.15*10^(7) 8*2.18*10^(7) 10*2.2*10^(7) 12*2.21*10^(7) 14*2.215*10^(7) 16*2.218*10^(7) 18*2.22*10^(7) 20*2.221*10^(7) 22*2.222*10^(7) 24*2.223*10^(7) 26*2.224*10^(7) 28*2.225*10^(7) 30*2.226*10^(7) 32*2.227*10^(7) 34*2.228*10^(7) 36*2.229*10^(7) 38*2.230*10^(7) 40*2.231*10^(7)]
-
 
 figure(1);
 mesh(sys_par.N,sys_par.lambda,r.ta);
