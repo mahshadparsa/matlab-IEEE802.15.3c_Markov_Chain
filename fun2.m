@@ -1,15 +1,5 @@
 function F = fun2(x,sys,i,j,var)
 
-
-
-
-
-% x(22)=pe=pe_data+pe_ACK-pe_data*pe_ACK;
-% x(23)=pe_data=1-(1-pe_BPSK)^L.data;
-% x(24)=pe_ACK=1-(1-pe_BPSK)^L.ACK;
-% x(25)=pe_BPSK=Q_func(SINR^.5);
-% x(26)=SINR=Pt/Pn
-
 F=[% x(1)=b_idle=1/(1 + ( (sys.W0+1)/2+pf/2*(1-pf^m)/(1-pf)+sys.W0*pf*(1-(2*pf)^m)/(1-2*pf) )*sys.lambda/(1-pb)/(1-q) )
  %-x(1)+sys.lambda(i)*exp(-sys.lambda(i)*x(18));
  -x(1)+1/(1 + ( (sys.W0+1)/2+x(5)/2*(1-x(5)^sys.m)/(1-x(5))+sys.W0*x(5)*(1-(2*x(5))^sys.m)/(1-2*x(5)) )*x(19)/(1-x(3))/(exp(-x(15))) )
